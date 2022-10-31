@@ -214,3 +214,43 @@ var buildArray = function(nums) {
     }
     return arr
 };
+
+// ------------------------------------------- \\
+
+/*
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+Return the maximum amount of water a container can store.
+Notice that you may not slant the container.
+*/
+
+var maxArea = function(height) {
+    let left = 0;
+    let right = height.length - 1;
+    let maxAreaBetweenTwoHeights = 0;
+
+    while(left < right) {
+        maxAreaBetweenTwoHeights = Math.max(maxAreaBetweenTwoHeights, 
+                                   Math.min(height[right], height [left]) * (right - left) );
+        if(height[left] < height[right]) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    return maxAreaBetweenTwoHeights;
+}
+
+// ------------------------------------------- \\
+
+/*
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+*/
+
+var addTwoNumbers = function(l1, l2) {
+    let sum = parseInt(l1.reverse().join('')) +parseInt(l2.reverse().join(''))
+    return sum.split('')
+};
+
+console.log(addTwoNumbers([2, 4, 3], [5, 6, 4]));
