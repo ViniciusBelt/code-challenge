@@ -86,3 +86,106 @@ var twoSum = function(nums, target) {
 };
 
 // ------------------------------------------- \\
+
+/*
+You are given an array tasks where tasks[i] = [actuali, minimumi]:
+actuali is the actual amount of energy you spend to finish the ith task.
+minimumi is the minimum amount of energy you require to begin the ith task.
+For example, if the task is [10, 12] and your current energy is 11, you cannot start this task. However, if your current energy is 13, you can complete this task, and your energy will be 3 after finishing it.
+You can finish the tasks in any order you like.
+Return the minimum initial amount of energy you will need to finish all the tasks.
+*/
+
+var minimumEffort = function(tasks) {
+    let result = 0
+    for (let i = 0; i < tasks.length; i++) {
+        for (let energy = 0; energy < tasks[i]; energy++) {
+            result = energy
+        }
+    }
+    return result
+};
+
+let tasks = [[1,7],[2,8],[3,9],[4,10],[5,11],[6,12]]
+console.log(minimumEffort(tasks));
+
+// ------------------------------------------- \\
+
+/*
+Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+If target is not found in the array, return [-1, -1].
+You must write an algorithm with O(log n) runtime complexity.
+*/
+
+var searchRange = function(nums, target) {
+    return [findFirstOccurrence(nums, target), findLastOccurrence(nums, target)];
+};
+
+const findFirstOccurrence = (nums, target) => {
+    let left = 0;
+    let right = nums.length - 1;
+    let firstOccurrence = -1;
+    while (left <= right) {
+        let middle = left + parseInt((right - left) / 2);
+        if (nums[middle] === target) {
+            firstOccurrence = middle;
+            right = middle - 1;
+        } else if (target < nums[middle]) {
+            right = middle - 1;
+        } else {
+            left = middle + 1;
+        }
+    }
+    return firstOccurrence;
+};
+
+const findLastOccurrence = (nums, target) => {
+    let left = 0;
+    let right = nums.length - 1;
+    let lastOccurrence = -1;
+    while (left <= right) {
+        let middle = left + parseInt((right - left) / 2);
+        if (nums[middle] === target) {
+            lastOccurrence = middle;
+            left = middle + 1;
+        } else if (target < nums[middle]) {
+            right = middle - 1;
+        } else {
+            left = middle + 1;
+        }
+    }
+    return lastOccurrence;
+};
+
+let arr = [1,4]
+
+// ------------------------------------------- \\
+
+/*
+Given an m x n matrix, return true if the matrix is Toeplitz. Otherwise, return false.
+A matrix is Toeplitz if every diagonal from top-left to bottom-right has the same elements.
+*/
+
+var isToeplitzMatrix = function(matrix) {
+    let row = matrix.length;
+    let col = matrix[0].length;
+    let map = new Map();
+
+    for(let i = 0; i < row; i++)
+    {
+        for(let j = 0; j < col; j++)
+        {
+            let key = i - j;
+            if (map.has(key)){
+                if (map.get(key) != matrix[i][j])
+                    return false;
+            } else {
+                map.set(i - j, matrix[i][j]);
+            }
+        }
+    }
+    return true;
+};
+
+let obj = [[1,2],[2,2]]
+console.log(isToeplitzMatrix(obj));
