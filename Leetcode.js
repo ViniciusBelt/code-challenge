@@ -107,7 +107,6 @@ var minimumEffort = function(tasks) {
 };
 
 let tasks = [[1,7],[2,8],[3,9],[4,10],[5,11],[6,12]]
-console.log(minimumEffort(tasks));
 
 // ------------------------------------------- \\
 
@@ -253,4 +252,14 @@ var addTwoNumbers = function(l1, l2) {
     return sum.split('')
 };
 
-console.log(addTwoNumbers([2, 4, 3], [5, 6, 4]));
+// ------------------------------------------- \\
+
+/*
+You are given a non-negative floating point number rounded to two decimal places celsius, that denotes the temperature in Celsius.
+You should convert Celsius into Kelvin and Fahrenheit and return it as an array ans = [kelvin, fahrenheit].
+Return the array ans. Answers within 10-5 of the actual answer will be accepted.
+*/
+
+var convertTemperature = function(celsius) {
+    return [celsius + 273.15, celsius * 1.80 + 32.00]
+};
