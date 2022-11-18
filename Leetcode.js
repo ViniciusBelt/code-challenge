@@ -288,5 +288,18 @@ Return the number that I picked.
 */
 
 var guessNumber = function(n) {
-    
+    let interval = [1, n]
+
+    while(interval[0] <= interval[1]) {
+        let pick = Math.floor((interval[0] + interval[1]) / 2)
+        let g = guess(pick)
+        if(g == 0) {
+            return pick;
+        } else if(g == 1) {
+            interval[0] = pick + 1
+        } else {
+            interval[1] = pick - 1;
+        }
+    }
+    return 1;
 };
